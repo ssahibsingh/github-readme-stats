@@ -3,13 +3,28 @@ on:
   schedule:
     - cron: "0 0 */7 * *"
 
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
 jobs:
   closeOldThemePrs:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     name: Close stale 'invalid' theme PRs
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v3
